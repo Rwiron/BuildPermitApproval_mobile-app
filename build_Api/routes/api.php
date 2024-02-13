@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Feed\FeedController;
+use App\Http\Controllers\Admin\AdminController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,10 +18,6 @@ use App\Http\Controllers\Auth\AuthenticationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::get('/test', function () {
     return response([
@@ -25,6 +25,16 @@ Route::get('/test', function () {
     ],200);
 });
 
+//user
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
+
+//Admin
+Route::post('/admin/register', [AdminController::class, 'register']);
+Route::post('/admin/login', [AdminController::class, 'login']);
+
+
+//request
+Route::post('/feed/store',[FeedController::class,'store'])->middleware('auth:sanctum');
+Route::get('/construction-requests', [FeedController::class, 'index'])->middleware('auth:sanctum');
 
