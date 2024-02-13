@@ -26,15 +26,37 @@ class FeedController extends Controller
 
     }
 
+    // public function index() {
+    //     $constructionRequests = Construction_Request::all(); // Fetch all construction requests
+
+    //     return response()->json([
+    //         'message' => 'Construction requests retrieved successfully!',
+    //         'constructionRequests' => $constructionRequests
+    //     ]);
+
+    // }
     public function index() {
-        $constructionRequests = Construction_Request::all(); // Fetch all construction requests
+
+        $constructionRequests = Construction_Request::with('user')->get();
+
+       
+        $constructionRequestsTransformed = $constructionRequests->map(function ($request) {
+            return [
+                //'id' => $request->id,
+                //'user_id' => $request->user_id,
+                'username' => $request->user ? $request->user->username : null,
+                'description' => $request->description,
+                'location' => $request->location,
+                'status' => $request->status,
+                'created_at' => $request->created_at,
+                'updated_at' => $request->updated_at,
+                // Include any other fields you need
+            ];
+        });
 
         return response()->json([
             'message' => 'Construction requests retrieved successfully!',
-            'constructionRequests' => $constructionRequests
+            'constructionRequests' => $constructionRequestsTransformed
         ]);
     }
 }
-
-
-
