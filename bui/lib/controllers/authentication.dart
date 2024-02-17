@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bui/constants/constants.dart';
-import 'package:bui/views/widgets/home_screen.dart';
+import 'package:bui/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -86,7 +86,7 @@ class AuthenticationController extends GetxController {
         isLoading.value = false;
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
-        Get.offAll(()=> const HomePage());
+        Get.offAll(()=> HomePage());
       } else {
         isLoading.value = false;
         debugPrint(response.body);

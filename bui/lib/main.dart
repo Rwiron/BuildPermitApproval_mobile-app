@@ -1,3 +1,5 @@
+//import 'package:bui/views/login_screen.dart';
+import 'package:bui/views/home_screen.dart';
 import 'package:bui/views/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Forum App',
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
