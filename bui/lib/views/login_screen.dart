@@ -1,3 +1,4 @@
+import 'package:bui/controllers/authentication.dart';
 import 'package:bui/views/register_screen.dart';
 import 'package:bui/views/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthenticationController _authenticationController =
+      Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +38,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
               InputWidget(
-                hintText: 'Email',
+                hintText: 'username',
                 obscureText: false,
-                controller: _emailController,
+                controller: _usernameController,
               ),
               const SizedBox(
                 height: 20,
@@ -58,14 +61,29 @@ class _LoginPageState extends State<LoginPage> {
                     horizontal: 50,
                     vertical: 15,
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Login',
-                  style: GoogleFonts.poppins(
-                    fontSize: size * 0.040,
+                  shape: RoundedRectangleBorder(
+                    // Add this line
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
+                onPressed: () async {
+                  await _authenticationController.login(
+                      username: _usernameController.text.trim(),
+                      password: _passwordController.text.trim());
+                },
+                child: Obx(() {
+                  return _authenticationController.isLoading.value
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          'Login',
+                          style: GoogleFonts.poppins(
+                            fontSize: size * 0.040,
+                            color: Colors.white,
+                          ),
+                        );
+                }),
               ),
               const SizedBox(
                 height: 20,
@@ -77,7 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'Register First to have an access ?!',
                   style: GoogleFonts.poppins(
-                      fontSize: size * 0.040, color: Colors.black),
+                    fontSize: size * 0.040,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ],
