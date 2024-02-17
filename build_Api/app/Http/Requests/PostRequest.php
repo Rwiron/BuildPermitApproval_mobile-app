@@ -26,6 +26,11 @@ class PostRequest extends FormRequest
         return [
             'description' => 'required|min:10|max:1000',
             'location' => 'required|string|max:255',
+            'land_upi_number' => 'required|string|max:255', // Assuming UPI number is required and has a string format
+            'province' => 'required|string|max:255',
+            'district' => 'required|string|max:255',
+            'sector' => 'required|string|max:255',
+            'cell' => 'required|string|max:255',
         ];
     }
 }

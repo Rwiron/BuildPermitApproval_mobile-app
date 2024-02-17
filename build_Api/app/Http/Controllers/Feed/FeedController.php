@@ -15,7 +15,12 @@ class FeedController extends Controller
         $constructionRequest = auth()->user()->constructionRequests()->create([
             'description' => $request->input('description'),
             'location' => $request->input('location'),
-            'status' => 'pending', // You can set a default status or take it from the request
+            'status' => 'pending',
+            'land_upi_number' => $validated['land_upi_number'],
+            'province' => $validated['province'],
+            'district' => $validated['district'],
+            'sector' => $validated['sector'],
+            'cell' => $validated['cell'],
         ]);
 
         // Return a successful response
@@ -35,11 +40,12 @@ class FeedController extends Controller
     //     ]);
 
     // }
+
     public function index() {
 
         $constructionRequests = Construction_Request::with('user')->get();
 
-       
+
         $constructionRequestsTransformed = $constructionRequests->map(function ($request) {
             return [
                 //'id' => $request->id,

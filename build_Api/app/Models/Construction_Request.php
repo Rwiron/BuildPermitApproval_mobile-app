@@ -14,7 +14,12 @@ class Construction_Request extends Model
         'user_id',
         'description',
         'location',
-        'status'
+        'status',
+        'land_upi_number',
+        'province',
+        'district',
+        'sector',
+        'cell'
     ];
 
     public function user(): BelongsTo {
