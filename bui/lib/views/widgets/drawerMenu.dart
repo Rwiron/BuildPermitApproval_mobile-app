@@ -5,7 +5,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class DrawerMenu extends StatelessWidget {
   final MenuItem currentItem;
-  final ValueChanged<MenuItem> onSelectedItem;
+  final Function(MenuItem) onSelectedItem;
 
   const DrawerMenu({
     Key? key,

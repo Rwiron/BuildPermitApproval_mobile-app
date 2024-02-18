@@ -1,8 +1,16 @@
-import 'package:bui/models/menu_item.dart';
+import 'package:bui/screen/requestPermit.dart';
 import 'package:bui/views/menu.dart';
-import 'package:bui/views/widgets/DrawerMenu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart'; // Update with the correct path to your DrawerMenu widget
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:bui/models/menu_item.dart';
+import 'package:bui/views/widgets/drawermenu.dart';
+
+// Import your screen widgets here
+import 'package:bui/screen/feedback.dart';
+import 'package:bui/screen/help.dart';
+import 'package:bui/screen/profile.dart';
+import 'package:bui/screen/status.dart';
+import 'package:bui/screen/user_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,45 +20,59 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _drawerController = ZoomDrawerController();
+  final ZoomDrawerController _drawerController = ZoomDrawerController();
   MenuItem _currentItem =
-      MenuItems.payment; // Start with the first item as current
+      MenuItems.all.first; // Start with the first item as current
 
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData.light(), // Use the dark theme for all child widgets
+      data: ThemeData.light(),
       child: ZoomDrawer(
         controller: _drawerController,
-        //style: DrawerStyle.style1,
         menuScreen: DrawerMenu(
           currentItem: _currentItem,
           onSelectedItem: (item) {
-            setState(() => _currentItem = item);
-            _drawerController.close!();
-            // Handle the page change: You can use a Navigator or a callback
+            setState(() {
+              _currentItem = item;
+              _drawerController.close!();
+            });
           },
         ),
         mainScreen: Scaffold(
           appBar: AppBar(
-            title: const Text('HomePage'),
+            title: Text(_currentItem.title),
             leading: IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () => _drawerController.toggle!(),
             ),
           ),
-          body: Center(
-            child:
-                Text('Main content here'), // Placeholder for your main content
-          ),
-          backgroundColor: Colors.white, // Ensure the background color is black
+          body: getScreen(),
         ),
         borderRadius: 24.0,
         showShadow: true,
         angle: -12.0,
-        //backgroundColor: Colors.grey[300]!,
         slideWidth: MediaQuery.of(context).size.width * 0.65,
       ),
     );
+  }
+
+  Widget getScreen() {
+    switch (_currentItem) {
+      case MenuItems.payment:
+        return const RequestPermit();
+      case MenuItems.promos:
+        return const Status();
+      case MenuItems.notifications:
+        return const FeedStatus(); // Assuming 'Feedback' corresponds to 'Notification' in your menu
+      case MenuItems.help:
+        return const Help();
+      case MenuItems.about:
+        return const Profile(); // Assuming 'About Us' corresponds to 'Profile' in your menu
+      case MenuItems.rateus:
+        return const UserHome();
+      default:
+        return const UserHome();
+    }
   }
 }
