@@ -1,4 +1,5 @@
 import 'package:bui/constants/constants.dart';
+import 'package:bui/screen/requestDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -81,8 +82,10 @@ class _ProfileState extends State<Profile> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          //Text('username: ${request['username']}'),
                           Text('Location: ${request['location']}'),
                           Text('Status: ${request['status']}'),
+
                           // Add more fields as needed
                         ],
                       ),
@@ -92,7 +95,13 @@ class _ProfileState extends State<Profile> {
                       color: Theme.of(context).primaryColor,
                     ),
                     onTap: () {
-                      // Handle tap (if needed)
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ReasonScreen(request: _requests[index]),
+                        ),
+                      );
                     },
                   ),
                 );
