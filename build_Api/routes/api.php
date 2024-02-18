@@ -34,6 +34,9 @@ Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
 
 
+Route::get('/user/construction-requests', [FeedController::class, 'userRequests'])->middleware('auth:sanctum');
+
+
 //request
 Route::post('/feed/store',[FeedController::class,'store'])->middleware('auth:sanctum');
 Route::get('/construction-requests', [FeedController::class, 'index'])->middleware('auth:sanctum');

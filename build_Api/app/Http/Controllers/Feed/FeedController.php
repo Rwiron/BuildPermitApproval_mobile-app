@@ -62,7 +62,7 @@ class FeedController extends Controller
     }
 
 
-    
+
     public function show($id) {
         $construction_request = Construction_Request::with('user')->find($id);
 
@@ -73,11 +73,12 @@ class FeedController extends Controller
         }
 
         $requestTransformed = [
-            'id' => $construction_request->id,
-            'user_id' => $construction_request->user_id,
+            //'id' => $construction_request->id,
+            //'user_id' => $construction_request->user_id,
             'username' => optional($construction_request->user)->username,
-            'description' => $construction_request->description,
             'location' => $construction_request->location,
+            'land_upi_number' => $construction_request->land_upi_number,
+            'description' => $construction_request->description,
             'status' => $construction_request->status,
             'created_at' => optional($construction_request->created_at)->toDateTimeString(),
             'updated_at' => optional($construction_request->updated_at)->toDateTimeString(),
@@ -86,6 +87,28 @@ class FeedController extends Controller
         return response()->json([
             'message' => 'Construction request retrieved successfully!',
             'constructionRequest' => $requestTransformed
+        ]);
+    }
+
+    public function userRequests() {
+        $userId = auth()->id();
+        $userRequests = Construction_Request::where('user_id', $userId)->with('user')->get();
+
+        // Transform the data as needed, similar to your index method
+        $transformedRequests = $userRequests->map(function ($request) {
+            return [
+                'id' => $request->id,
+                'username' => $request->user ? $request->user->username : null,
+                'description' => $request->description,
+                'location' => $request->location,
+                'status' => $request->status,
+
+            ];
+        });
+
+        return response()->json([
+            'message' => 'User construction requests retrieved successfully!',
+            'constructionRequests' => $transformedRequests,
         ]);
     }
 }
