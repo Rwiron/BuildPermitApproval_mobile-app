@@ -71,6 +71,8 @@ flutter:
     - assets/images/shares.png
     - assets/images/happy.png
     - assets/images/support.png
+    - assets/images/RoundedTB1.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

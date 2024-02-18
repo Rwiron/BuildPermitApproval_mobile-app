@@ -22,16 +22,27 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
+        body: SingleChildScrollView(
+      child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              SizedBox(height: 120),
+              Image.asset(
+                'assets/images/RoundedTB1.png',
+                width: 120,
+                height: 120,
+              ),
+              SizedBox(height: 20),
               Text(
                 'Login',
                 style: GoogleFonts.poppins(
-                  fontSize: size * 0.080,
+                  fontSize: size * 0.09, //
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 24, 17, 120),
                 ),
               ),
               const SizedBox(
@@ -104,6 +115,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -25,14 +25,26 @@ class DrawerMenu extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Spacer(),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding:
+                    EdgeInsets.only(right: 20.0), // Padding on the right side
+                child: Image.asset(
+                  'assets/images/RoundedTB1.png', // Replace with your actual logo asset path
+                  width: 90, // Set the width to the size you need
+                  height: 90, // Set the height to the size you need
+                ),
+              ),
+            ),
+            const Spacer(),
             for (var item in MenuItems.all) buildMenuItem(item, context),
-            Spacer(
+            const Spacer(
               flex: 2,
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
               onTap: () => _logout(context),
             ),
           ],
@@ -60,19 +72,19 @@ void _logout(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Logout'),
-        content: Text(
+        title: const Text('Logout'),
+        content: const Text(
             'We are sad to see you leave us. Are you sure you want to log out?'),
         actions: <Widget>[
           TextButton(
-            child: Text('No'),
+            child: const Text('No'),
             onPressed: () {
               Navigator.of(context)
                   .pop(); // Dismiss the dialog but don't logout
             },
           ),
           TextButton(
-            child: Text('Yes'),
+            child: const Text('Yes'),
             onPressed: () {
               // Clear user data from storage
               final box = GetStorage();
@@ -80,7 +92,7 @@ void _logout(BuildContext context) {
 
               // Navigate to the login page
               Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
                 (Route<dynamic> route) => false,
               );
             },
