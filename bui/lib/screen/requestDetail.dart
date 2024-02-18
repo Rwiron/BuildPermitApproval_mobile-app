@@ -112,6 +112,7 @@ class ReasonScreen extends StatelessWidget {
               _buildDetail('Sector', request['sector']),
               _buildDetail('Location', request['location']),
               _buildDetail('Cell', request['cell']),
+              _buildDetail('Description', request['description']),
               _buildDetail('Status', request['status']),
               pw.Divider(),
               pw.SizedBox(height: 20),

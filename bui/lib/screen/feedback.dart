@@ -1,5 +1,6 @@
 import 'package:bui/constants/constants.dart';
 import 'package:bui/views/widgets/menu_widget.dart';
+import 'package:bui/views/widgets/permitnav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -111,31 +112,7 @@ class _FeedStatusState extends State<FeedStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        title: Row(
-          mainAxisSize:
-              MainAxisSize.min, // Use min size to keep the row compact
-          children: [
-            Icon(Icons.upload_file,
-                color: Color.fromARGB(
-                    255, 0, 0, 0)), // The icon related to submitting documents
-            SizedBox(width: 8), // Space between the icon and the text
-            Text(
-              'Submit Your Request',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                // Additional style options
-              ),
-            ),
-          ],
-        ),
-        centerTitle: true, // Centers the title text within the AppBar
-        // Additional customization:
-        elevation:
-            0, // Removes the shadow under the AppBar for a flatter appearance
-        // You can also add icons, actions, or customize leading widgets if needed
-      ),
+      appBar: CustomAppBars(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -256,8 +233,31 @@ class _FeedStatusState extends State<FeedStatus> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: submitRequest,
-                child: const Text('Submit Request'),
-              ),
+                child: const Text(
+                  'Submit Request',
+                  style: TextStyle(
+                    fontSize: 18, // Adjust the font size as needed
+                    fontWeight: FontWeight.bold, // Make the text bold
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(
+                      255, 24, 17, 120), // Button background color
+                  onPrimary: Colors
+                      .white, // Button text color (when button is enabled)
+                  onSurface: Colors.blueAccent.withOpacity(
+                      0.5), // Button text color (when button is disabled)
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 16), // Button padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10), // Button border radius
+                  ),
+                  elevation: 5, // Button elevation
+                  shadowColor: Color.fromARGB(255, 24, 17, 120)
+                      .withOpacity(0.5), // Shadow color
+                ),
+              )
             ],
           ),
         ),

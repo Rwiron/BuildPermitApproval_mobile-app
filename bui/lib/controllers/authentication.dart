@@ -84,9 +84,17 @@ class AuthenticationController extends GetxController {
       );
       if (response.statusCode == 200) {
         isLoading.value = false;
-        token.value = json.decode(response.body)['token'];
+        var responseBody = json.decode(response.body);
+        token.value = responseBody['token'];
+        var userName = responseBody['user']
+            ['name']; // Assuming the username is in the 'name' field
         box.write('token', token.value);
-        Get.offAll(()=> HomePage());
+        box.write('username', userName); // Storing the username
+
+        print(
+            'Logged in user: $userName'); // Debug print to confirm the username is captured
+
+        Get.offAll(() => HomePage()); // Navigate to the HomePage
       } else {
         isLoading.value = false;
         debugPrint(response.body);

@@ -1,3 +1,4 @@
+import 'package:bui/screen/feedback.dart';
 import 'package:bui/screen/requestPermit.dart';
 import 'package:bui/views/menu.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:bui/models/menu_item.dart';
 import 'package:bui/views/widgets/drawermenu.dart';
 
 // Import your screen widgets here
-import 'package:bui/screen/feedback.dart';
 import 'package:bui/screen/help.dart';
 import 'package:bui/screen/profile.dart';
 import 'package:bui/screen/status.dart';
@@ -62,9 +62,9 @@ class _HomePageState extends State<HomePage> {
       case MenuItems.payment:
         return const RequestPermit();
       case MenuItems.promos:
-        return const Status();
+        return Status();
       case MenuItems.notifications:
-        return const FeedStatus(); // Assuming 'Feedback' corresponds to 'Notification' in your menu
+        return FeedStatus(); // Assuming 'Feedback' corresponds to 'Notification' in your menu
       case MenuItems.help:
         return const Help();
       case MenuItems.about:

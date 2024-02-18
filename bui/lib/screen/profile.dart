@@ -1,5 +1,6 @@
 import 'package:bui/constants/constants.dart';
 import 'package:bui/screen/requestDetail.dart';
+import 'package:bui/views/widgets/customN.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -54,10 +55,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lime,
-        title: const Text('My Requests Result'),
-      ),
+      appBar: CustomAppBar2(),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
@@ -74,7 +72,7 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
+                        color: Color.fromARGB(255, 24, 17, 120),
                       ),
                     ),
                     subtitle: Padding(
