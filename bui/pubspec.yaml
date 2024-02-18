@@ -70,6 +70,7 @@ flutter:
     - assets/images/stress.png
     - assets/images/shares.png
     - assets/images/happy.png
+    - assets/images/support.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

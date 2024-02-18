@@ -59,8 +59,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget getScreen() {
     switch (_currentItem) {
-      case MenuItems.payment:
-        return const RequestPermit();
+      // case MenuItems.payment:
+      //   return const RequestPermit();
       case MenuItems.promos:
         return Status();
       case MenuItems.notifications:

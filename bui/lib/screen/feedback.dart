@@ -109,6 +109,18 @@ class _FeedStatusState extends State<FeedStatus> {
     _cellController.clear();
   }
 
+  InputDecoration _buildInputDecoration(
+      {required String label, required IconData icon}) {
+    return InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(),
+      prefixIcon: Icon(icon),
+      // Added filled properties to improve the aesthetics
+      filled: true,
+      fillColor: Colors.white,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,9 +133,9 @@ class _FeedStatusState extends State<FeedStatus> {
             children: [
               TextFormField(
                 controller: _landUpiController,
-                decoration: InputDecoration(
-                  labelText: 'Land UPI Number',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'Land UPI Number',
+                  icon: Icons.landslide,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -135,10 +147,11 @@ class _FeedStatusState extends State<FeedStatus> {
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _locationController,
-                decoration: InputDecoration(
-                  labelText: 'Location',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'Location',
+                  icon: Icons.my_location_outlined,
                 ),
+                //icon: Icons.lock_outline,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the location';
@@ -149,9 +162,9 @@ class _FeedStatusState extends State<FeedStatus> {
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _provinceController,
-                decoration: InputDecoration(
-                  labelText: 'Province',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'Province',
+                  icon: Icons.location_city,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -160,12 +173,12 @@ class _FeedStatusState extends State<FeedStatus> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: _districtController,
-                decoration: InputDecoration(
-                  labelText: 'District',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'District',
+                  icon: Icons.house_siding_outlined,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -174,12 +187,12 @@ class _FeedStatusState extends State<FeedStatus> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: _sectorController,
-                decoration: InputDecoration(
-                  labelText: 'Sector',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'Sector',
+                  icon: Icons.map_outlined,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -191,9 +204,9 @@ class _FeedStatusState extends State<FeedStatus> {
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _cellController,
-                decoration: InputDecoration(
-                  labelText: 'Cell',
-                  border: OutlineInputBorder(),
+                decoration: _buildInputDecoration(
+                  label: 'Cell',
+                  icon: Icons.insert_chart_outlined_outlined,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {

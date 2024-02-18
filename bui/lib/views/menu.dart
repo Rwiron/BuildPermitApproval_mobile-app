@@ -3,7 +3,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:bui/models/menu_item.dart';
 
 class MenuItems {
-  static const payment = MenuItem('Feedback ', Icons.feedback_outlined);
+  //static const payment = MenuItem('Feedback ', Icons.feedback_outlined);
   static const promos = MenuItem('Home', Icons.home);
   static const notifications = MenuItem('Ask Permit', Icons.document_scanner);
   static const about = MenuItem('Doc Status', Icons.info_outline);
@@ -16,10 +16,9 @@ class MenuItems {
     about,
     help,
     rateus,
-    payment,
+    //payment,
   ];
 }
-
 class Menupage extends StatelessWidget {
   final MenuItem currentItem;
   final ValueChanged<MenuItem> onSelectedItem;
