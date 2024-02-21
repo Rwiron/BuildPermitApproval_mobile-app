@@ -30,13 +30,13 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-              SizedBox(height: 120),
+              const SizedBox(height: 120),
               Image.asset(
                 'assets/images/RoundedTB1.png',
                 width: 120,
                 height: 120,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Login',
                 style: GoogleFonts.poppins(
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 24, 17, 120),
+                  backgroundColor: const Color.fromARGB(255, 24, 17, 120),
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 50,
