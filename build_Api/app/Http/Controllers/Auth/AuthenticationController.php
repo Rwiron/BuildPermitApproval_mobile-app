@@ -48,6 +48,39 @@ class AuthenticationController extends Controller
             'token' => $token
            ],200);
     }
+
+
+    public function updateProfile(Request $request) {
+        $user = auth()->user();
+
+        // Validate the request data
+        $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'username' => 'sometimes|string|max:255|unique:users,username,' . $user->id,
+            'email' => 'sometimes|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'sometimes|min:6',
+        ]);
+
+        // Update user information
+        if ($request->has('name')) {
+            $user->name = $request->name;
+        }
+        if ($request->has('username')) {
+            $user->username = $request->username;
+        }
+        if ($request->has('email')) {
+            $user->email = $request->email;
+        }
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profile updated successfully.',
+            'user' => $user
+        ], 200);
+    }
+
 }
-
-

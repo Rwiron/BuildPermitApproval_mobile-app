@@ -28,11 +28,15 @@ Route::get('/test', function () {
 //user
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
+Route::middleware('auth:sanctum')->put('/user/update-profile', [AuthenticationController::class, 'updateProfile']);
+
 
 //Admin
 Route::post('/admin/register', [AdminController::class, 'register']);
-Route::post('/admin/login', [AdminController::class, 'login']);
+//Route::post('/admin/login', [AdminController::class, 'login']);
+//Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 
+//Route::post('/admin/login', [AdminController::class, 'login'])->middleware('auth:sanctum')->name('admin.login');;
 
 Route::get('/user/construction-requests', [FeedController::class, 'userRequests'])->middleware('auth:sanctum');
 

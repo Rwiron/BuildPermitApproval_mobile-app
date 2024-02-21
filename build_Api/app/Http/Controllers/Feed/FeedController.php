@@ -100,7 +100,12 @@ class FeedController extends Controller
                 'id' => $request->id,
                 'username' => $request->user ? $request->user->username : null,
                 'description' => $request->description,
+                'land_upi_number' => $request->land_upi_number,
                 'location' => $request->location,
+                'province' =>  $request->province,
+                'district' =>  $request->district,
+                'sector' => $request->sector,
+                'cell' =>   $request->cell,
                 'status' => $request->status,
 
             ];
